@@ -1,0 +1,119 @@
+using System;
+using System.Collections;
+using System.Linq;
+using System.Web;
+using System.Data.SqlClient;
+
+// 剩 問問題 重跑、小細節調整
+
+namespace lab2
+    {
+        class lab2
+        {
+        static void Main(string[] args)
+        {
+            Boolean outLoop = true;
+            while( outLoop == true)
+            {
+                #region
+
+                bool torf = true;
+                ArrayList collNum = new ArrayList();
+
+                while (torf == true)
+                {
+                    Console.WriteLine("Give a number? ");
+                    string str1 = Console.ReadLine(); 
+                                                    
+                    if (String.IsNullOrEmpty(str1))
+                    {
+                        Console.WriteLine("You did not enter any integer");
+                        Console.ReadLine();
+                        torf = false;
+
+                    }
+                    else
+                    {
+                        int num1 = int.Parse(str1);
+                        collNum.Add(num1);
+
+                    };
+                };
+
+                string strColl = collNum[0].ToString();
+                int min = int.Parse(strColl);
+                int max = int.Parse(strColl);
+
+                for (int i = 0; i < collNum.Count; i++)
+                {
+                    string strBasic = collNum[i].ToString();
+                    int intBasic = int.Parse(strBasic);
+                    if (min > intBasic)
+                    {
+                        min = intBasic;
+                    }
+                    if (intBasic > max)
+                    {
+                        max = intBasic;
+                    }
+                }
+                Console.WriteLine("The minimum integer you enteger is {0}", min);
+                Console.WriteLine("The maximum integer you enteger is {0}", max);
+
+                ArrayList collEven = new ArrayList();
+                ArrayList collOdd = new ArrayList();
+                for (int i = 0; i < collNum.Count; i++)
+                {
+                    string strColl_AO = collNum[i].ToString();
+                    int number = int.Parse(strColl_AO);
+                    double OddEve = number % 2;
+                    if (OddEve == 0)
+                    {
+                        collEven.Add(number);  
+                    }
+                    else
+                    {
+                        collOdd.Add(number);
+                    }
+                }
+
+                int sumOdd = 0;
+                double aveOdd = 0.00;
+                for (int x = 0; x < collOdd.Count; x++)
+                {
+                    string strBasicOdd = collOdd[x].ToString();
+                    int intBasicOdd = int.Parse(strBasicOdd);
+                    sumOdd = sumOdd + intBasicOdd;
+                }
+                aveOdd = sumOdd / collOdd.Count;
+                Console.WriteLine("The total number of odd integer(s) you entered is :" + collOdd.Count);
+                Console.WriteLine("The sum of all odd integer(s) you entered is : " + sumOdd);
+                Console.WriteLine("The average of all odd integer(s) you entered is :" + aveOdd);
+
+                int sumEven = 0;
+                double aveEven = 0.00;
+                for (int x = 0; x < collEven.Count; x++)
+                {
+                    string strBasicEven = collEven[x].ToString();
+                    int intBasicEven = int.Parse(strBasicEven);
+                    sumEven = sumEven + intBasicEven;
+                }
+                aveEven = sumEven / collEven.Count;
+                Console.WriteLine("The total number of even integer(s) you entered is :" + collEven.Count);
+                Console.WriteLine("The sum of all even integer(s) you entered is : " + sumEven);
+                Console.WriteLine("The average of all even integer(s) you entered is :" + aveEven);
+
+                Console.WriteLine("Play again? Y/N ");
+                #endregion
+                string againResult = Console.ReadLine();
+                if (againResult != "Y" )
+                {
+                    Console.WriteLine("Thank you for play. Press any key to finish.");
+                    break;
+                }
+            }
+        }//MAIN
+
+    }
+    }
+
